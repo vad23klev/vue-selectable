@@ -35,7 +35,6 @@ export default {
                 for (let i = 0; i < needDeselect.length; i += 1) {
                     itemsDeselect.push(document.querySelectorAll(`td[data-key='${needDeselect[i].key}']`));
                 }
-                console.log(need, items);
                 this._selectable.select(items);
                 this._selectable.deselect(itemsDeselect);
             }
@@ -50,23 +49,16 @@ export default {
             window.selectableInstance = new Selectable(this.options);
             this._selectable = window.selectableInstance;
             this._selectable.on('end', this.end);
-            this._selectable.on('selecteditem', this.selectItem);
         })
     },
     beforeDestroy() {
         if (this._selectable !== undefined) this._selectable.destroy();
     },
     methods: {
-        selectItem(item) {
-            console.log(item);
-        },
-        end(e, selected, unselected) {
-            const items = this._selectable.getSelectedItems();
-            console.log(selected, unselected);
+        end(e, select) {
             const storeSelected = [];
-            for (let i = 0; i < items.length; i += 1) {
-                console.log(items[i].node.dataset.key);
-                storeSelected.push(items[i].node.dataset.key);
+            for (let i = 0; i < select.length; i += 1) {
+                storeSelected.push(select[i].node.dataset.key);
             }
             if (storeSelected.length) {
                 const need = this.value.filter(item => storeSelected.indexOf(item.key) !== -1);
