@@ -236,7 +236,7 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
         const items = [];
 
         for (let i = 0; i < need.length; i += 1) {
-          items.push(document.querySelectorAll(`td[data-key='${need[i]}']`));
+          items.push(document.querySelectorAll(`td[data-key='${need[i].key}']`));
         }
 
         console.log(need, items);
