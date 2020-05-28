@@ -239,6 +239,8 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
           items.push(document.querySelectorAll(`td[data-key='${need[i]}']`));
         }
 
+        console.log(need, items);
+
         this._selectable.select(items);
       }
 

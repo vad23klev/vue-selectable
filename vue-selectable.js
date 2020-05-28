@@ -30,6 +30,7 @@ export default {
                 for (let i = 0; i < need.length; i += 1) {
                     items.push(document.querySelectorAll(`td[data-key='${need[i]}']`));
                 }
+                console.log(need, items);
                 this._selectable.select(items);
             }
         },
