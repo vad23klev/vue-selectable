@@ -221,6 +221,11 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
     end: {
       type: Function,
       default: () => {}
+    },
+    element: {
+      type: String,
+      default: 'div',
+      required: true
     }
   },
 
@@ -233,7 +238,7 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
 
   render(h) {
     const slots = this.$slots.default;
-    return h('div', {}, slots);
+    return h(this.element, {}, slots);
   },
 
   created() {

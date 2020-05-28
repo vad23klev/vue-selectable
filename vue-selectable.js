@@ -17,7 +17,12 @@ export default {
         end: {
             type: Function,
             default: () => {},
-        }
+        },
+        element: {
+            type: String,
+            default: 'div',
+            required: true,
+        },
     },
     data() {
         return {
@@ -27,7 +32,7 @@ export default {
     },
     render(h) {
         const slots = this.$slots.default;
-        return h('div', {}, slots);
+        return h(this.element, {}, slots);
     },
     created() {
         if (this.list !== null && this.value !== null) {
