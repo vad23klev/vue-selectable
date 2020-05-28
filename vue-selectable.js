@@ -39,11 +39,6 @@ export default {
         }
     },
     mounted() {
-        const options = Object.assign({}, this.options, attributes, optionsAdded, {
-            onMove: (evt, originalEvent) => {
-                return this.onDragMove(evt, originalEvent);
-            }
-        });
         this._selectable = new Selectable(this.options);
         this._selectable.on('end', this.end);
     },
@@ -62,9 +57,7 @@ export default {
         updateOptions(newOptionValue) {
             for (var property in newOptionValue) {
                 const value = camelize(property);
-                if (readonlyProperties.indexOf(value) === -1) {
-                    this._sortable.option(value, newOptionValue[property]);
-                }
+                this._selectable.option(value, newOptionValue[property]);
             }
         },
     },

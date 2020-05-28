@@ -242,11 +242,6 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
   },
 
   mounted() {
-    const options = Object.assign({}, this.options, attributes, optionsAdded, {
-      onMove: (evt, originalEvent) => {
-        return this.onDragMove(evt, originalEvent);
-      }
-    });
     this._selectable = new selectable_min_default.a(this.options);
 
     this._selectable.on('end', this.end);
@@ -270,9 +265,7 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
       for (var property in newOptionValue) {
         const value = camelize(property);
 
-        if (readonlyProperties.indexOf(value) === -1) {
-          this._sortable.option(value, newOptionValue[property]);
-        }
+        this._selectable.option(value, newOptionValue[property]);
       }
     }
 
