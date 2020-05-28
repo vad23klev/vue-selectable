@@ -255,6 +255,8 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
     this._selectable = new selectable_min_default.a(this.options);
 
     this._selectable.on('end', this.end);
+
+    this._selectable.on('selecteditem', this.selctItem);
   },
 
   beforeDestroy() {
@@ -277,6 +279,10 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
 
         this._selectable.option(value, newOptionValue[property]);
       }
+    },
+
+    selectItem(item) {
+      console.log(item);
     }
 
   }

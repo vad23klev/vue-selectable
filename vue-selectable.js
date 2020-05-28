@@ -50,6 +50,7 @@ export default {
     mounted() {
         this._selectable = new Selectable(this.options);
         this._selectable.on('end', this.end);
+        this._selectable.on('selecteditem', this.selctItem);
     },
     beforeDestroy() {
         if (this._selectable !== undefined) this._selectable.destroy();
@@ -69,5 +70,8 @@ export default {
                 this._selectable.option(value, newOptionValue[property]);
             }
         },
+        selectItem(item) {
+            console.log(item);
+        }
     },
 }
