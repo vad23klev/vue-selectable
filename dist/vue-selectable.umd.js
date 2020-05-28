@@ -241,8 +241,7 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
   data() {
     return {
       transitionMode: false,
-      noneFunctionalComponentMode: false,
-      _selectable: false
+      noneFunctionalComponentMode: false
     };
   },
 
@@ -252,36 +251,19 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
   },
 
   mounted() {
-    this._selectable = new selectable_min_default.a(this.options);
-    console.log(new selectable_min_default.a(this.options), this._selectable);
+    window.selectableInstance = new selectable_min_default.a(this.options);
+    this._selectable = window.selectableInstance;
 
     this._selectable.on('end', this.end);
 
-    this._selectable.on('selecteditem', this.selctItem);
+    this._selectable.on('selecteditem', this.selectItem);
   },
 
   beforeDestroy() {
-    if (this._selectable !== false) this._selectable.destroy();
+    if (this._selectable !== undefined) this._selectable.destroy();
   },
 
-  watch: {
-    options: {
-      handler(newOptionValue) {
-        this.updateOptions(newOptionValue);
-      },
-
-      deep: true
-    }
-  },
   methods: {
-    updateOptions(newOptionValue) {
-      for (var property in newOptionValue) {
-        const value = camelize(property);
-
-        this._selectable.option(value, newOptionValue[property]);
-      }
-    },
-
     selectItem(item) {
       console.log(item);
     }

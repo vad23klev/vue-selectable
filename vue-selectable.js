@@ -28,7 +28,6 @@ export default {
         return {
             transitionMode: false,
             noneFunctionalComponentMode: false,
-            _selectable: false,
         };
     },
     render(h) {
@@ -36,29 +35,15 @@ export default {
         return h(this.element, {}, slots);
     },
     mounted() {
-        this._selectable = new Selectable(this.options);
-        console.log(new Selectable(this.options), this._selectable );
+        window.selectableInstance = new Selectable(this.options);
+        this._selectable = window.selectableInstance;
         this._selectable.on('end', this.end);
-        this._selectable.on('selecteditem', this.selctItem);
+        this._selectable.on('selecteditem', this.selectItem);
     },
     beforeDestroy() {
-        if (this._selectable !== false) this._selectable.destroy();
-    },
-    watch: {
-        options: {
-            handler(newOptionValue) {
-                this.updateOptions(newOptionValue);
-            },
-            deep: true
-        },
+        if (this._selectable !== undefined) this._selectable.destroy();
     },
     methods: {
-        updateOptions(newOptionValue) {
-            for (var property in newOptionValue) {
-                const value = camelize(property);
-                this._selectable.option(value, newOptionValue[property]);
-            }
-        },
         selectItem(item) {
             console.log(item);
         }
