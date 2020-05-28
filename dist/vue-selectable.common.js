@@ -280,9 +280,10 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
       console.log(item);
     },
 
-    end() {
+    end(e, selected, unselected) {
       const items = this._selectable.getSelectedItems();
 
+      console.log(selected, unselected);
       const storeSelected = [];
 
       for (let i = 0; i < items.length; i += 1) {
@@ -297,7 +298,7 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
           need[i].selected = true;
         }
 
-        this.$emit('end');
+        this.$emit('end', storeSelected);
       }
     }
 
