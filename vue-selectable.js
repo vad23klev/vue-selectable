@@ -27,7 +27,7 @@ export default {
     },
     render(h) {
         const slots = this.$slots.default;
-        return h(this.getTag(), {}, slots);
+        return h('div', {}, slots);
     },
     created() {
         if (this.list !== null && this.value !== null) {
