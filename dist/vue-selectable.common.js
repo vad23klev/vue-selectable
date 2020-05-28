@@ -241,13 +241,15 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
     return h(this.element, {}, slots);
   },
 
-  mounted() {
-    window.selectableInstance = new selectable_min_default.a(this.options);
-    this._selectable = window.selectableInstance;
+  updated() {
+    this.$nextTick(function () {
+      window.selectableInstance = new selectable_min_default.a(this.options);
+      this._selectable = window.selectableInstance;
 
-    this._selectable.on('end', this.end);
+      this._selectable.on('end', this.end);
 
-    this._selectable.on('selecteditem', this.selectItem);
+      this._selectable.on('selecteditem', this.selectItem);
+    });
   },
 
   beforeDestroy() {

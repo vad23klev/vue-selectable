@@ -34,11 +34,13 @@ export default {
         const slots = this.$slots.default;
         return h(this.element, {}, slots);
     },
-    mounted() {
-        window.selectableInstance = new Selectable(this.options);
-        this._selectable = window.selectableInstance;
-        this._selectable.on('end', this.end);
-        this._selectable.on('selecteditem', this.selectItem);
+    updated() {
+        this.$nextTick(function () {
+            window.selectableInstance = new Selectable(this.options);
+            this._selectable = window.selectableInstance;
+            this._selectable.on('end', this.end);
+            this._selectable.on('selecteditem', this.selectItem);
+        })
     },
     beforeDestroy() {
         if (this._selectable !== undefined) this._selectable.destroy();
