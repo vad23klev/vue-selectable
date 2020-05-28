@@ -4,19 +4,10 @@ export default {
     name: 'Selectable',
     props: {
         options: Object,
-        list: {
-            type: Array,
-            required: false,
-            default: null
-        },
         value: {
             type: Array,
             required: false,
             default: null
-        },
-        end: {
-            type: Function,
-            default: () => {},
         },
         element: {
             type: String,
@@ -29,6 +20,19 @@ export default {
             transitionMode: false,
             noneFunctionalComponentMode: false,
         };
+    },
+    watch: {
+        value: {
+            deep: true,
+            handler() {
+                const need = this.value.filter(item => item.selected);
+                const items = [];
+                for (let i = 0; i < need.length; i += 1) {
+                    items.push(document.querySelectorAll(`td[data-key='${need[i]}']`));
+                }
+                this._selectable.select(items);
+            }
+        },
     },
     render(h) {
         const slots = this.$slots.default;
@@ -48,6 +52,21 @@ export default {
     methods: {
         selectItem(item) {
             console.log(item);
+        },
+        end() {
+            const items = this._selectable.getSelectedItems();
+            const storeSelected = [];
+            for (let i = 0; i < items.length; i += 1) {
+                console.log(items[i].node.dataset.key);
+                storeSelected.push(items[i].node.dataset.key);
+            }
+            if (storeSelected.length) {
+                const need = this.value.filter(item => storeSelected.indexOf(item.key));
+                for (let i = 0; i < need.length; i += 1) {
+                    need[i].selected = true;
+                }
+                this.$emit('end');
+            }
         }
     },
 }
