@@ -28,6 +28,7 @@ export default {
         return {
             transitionMode: false,
             noneFunctionalComponentMode: false,
+            _selectable: false,
         };
     },
     render(h) {
@@ -53,7 +54,7 @@ export default {
         this._selectable.on('selecteditem', this.selctItem);
     },
     beforeDestroy() {
-        if (this._selectable !== undefined) this._selectable.destroy();
+        if (this._selectable !== false) this._selectable.destroy();
     },
     watch: {
         options: {

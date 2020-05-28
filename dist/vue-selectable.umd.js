@@ -241,7 +241,8 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
   data() {
     return {
       transitionMode: false,
-      noneFunctionalComponentMode: false
+      noneFunctionalComponentMode: false,
+      _selectable: false
     };
   },
 
@@ -269,7 +270,7 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
   },
 
   beforeDestroy() {
-    if (this._selectable !== undefined) this._selectable.destroy();
+    if (this._selectable !== false) this._selectable.destroy();
   },
 
   watch: {
