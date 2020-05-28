@@ -35,21 +35,9 @@ export default {
         const slots = this.$slots.default;
         return h(this.element, {}, slots);
     },
-    created() {
-        if (this.list !== null && this.value !== null) {
-            console.error(
-                "Value and list props are mutually exclusive! Please set one or another."
-            );
-        }
-
-        if (this.options !== undefined) {
-            console.warn(
-                "Options props is deprecated, add sortable options directly as vue.draggable item, or use v-bind. See https://github.com/SortableJS/Vue.Draggable/blob/master/documentation/migrate.md#options-props"
-            );
-        }
-    },
     mounted() {
         this._selectable = new Selectable(this.options);
+        console.log(new Selectable(this.options), this._selectable );
         this._selectable.on('end', this.end);
         this._selectable.on('selecteditem', this.selctItem);
     },

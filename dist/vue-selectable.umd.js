@@ -251,18 +251,9 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
     return h(this.element, {}, slots);
   },
 
-  created() {
-    if (this.list !== null && this.value !== null) {
-      console.error("Value and list props are mutually exclusive! Please set one or another.");
-    }
-
-    if (this.options !== undefined) {
-      console.warn("Options props is deprecated, add sortable options directly as vue.draggable item, or use v-bind. See https://github.com/SortableJS/Vue.Draggable/blob/master/documentation/migrate.md#options-props");
-    }
-  },
-
   mounted() {
     this._selectable = new selectable_min_default.a(this.options);
+    console.log(new selectable_min_default.a(this.options), this._selectable);
 
     this._selectable.on('end', this.end);
 
