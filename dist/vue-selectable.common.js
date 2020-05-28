@@ -231,6 +231,11 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
     };
   },
 
+  render(h) {
+    const slots = this.$slots.default;
+    return h(this.getTag(), {}, slots);
+  },
+
   created() {
     if (this.list !== null && this.value !== null) {
       console.error("Value and list props are mutually exclusive! Please set one or another.");

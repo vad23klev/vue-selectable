@@ -25,6 +25,10 @@ export default {
             noneFunctionalComponentMode: false,
         };
     },
+    render(h) {
+        const slots = this.$slots.default;
+        return h(this.getTag(), {}, slots);
+    },
     created() {
         if (this.list !== null && this.value !== null) {
             console.error(
