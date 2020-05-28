@@ -68,7 +68,7 @@ export default {
                 storeSelected.push(items[i].node.dataset.key);
             }
             if (storeSelected.length) {
-                const need = this.value.filter(item => storeSelected.indexOf(item.key));
+                const need = this.value.filter(item => storeSelected.indexOf(item.key) !== -1);
                 for (let i = 0; i < need.length; i += 1) {
                     need[i].selected = true;
                 }

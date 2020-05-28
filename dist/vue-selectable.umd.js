@@ -300,7 +300,7 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
       }
 
       if (storeSelected.length) {
-        const need = this.value.filter(item => storeSelected.indexOf(item.key));
+        const need = this.value.filter(item => storeSelected.indexOf(item.key) !== -1);
 
         for (let i = 0; i < need.length; i += 1) {
           need[i].selected = true;
