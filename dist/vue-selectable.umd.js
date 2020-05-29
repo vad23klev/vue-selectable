@@ -281,11 +281,25 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
   },
 
   methods: {
-    end(e, select) {
+    end(e, select, deselect) {
       const storeSelected = [];
 
       for (let i = 0; i < select.length; i += 1) {
         storeSelected.push(select[i].node.dataset.key);
+      }
+
+      const storeDeselected = [];
+
+      for (let i = 0; i < deselect.length; i += 1) {
+        storeDeselected.push(deselect[i].node.dataset.key);
+      }
+
+      if (storeDeselected.length) {
+        const needDeselect = this.value.filter(item => storeDeselected.indexOf(item.key) !== -1);
+
+        for (let i = 0; i < needDeselect.length; i += 1) {
+          needDeselect[i].selected = false;
+        }
       }
 
       if (storeSelected.length) {
@@ -297,6 +311,10 @@ var selectable_min_default = /*#__PURE__*/__webpack_require__.n(selectable_min);
 
         this.$emit('end', storeSelected);
       }
+
+      this._selectable.select(select);
+
+      this._selectable.deselect(deselect);
     }
 
   }
