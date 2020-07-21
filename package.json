@@ -37,7 +37,7 @@
         "babel-eslint": "^10.0.1",
         "babel-jest": "^23.6.0",
         "bootstrap": "^4.3.1",
-        "codecov": "^3.2.0",
+        "codecov": "^3.7.1",
         "component-fixture": "^0.4.1",
         "element-ui": "^2.5.4",
         "eslint": "^5.8.0",
